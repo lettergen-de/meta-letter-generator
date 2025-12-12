@@ -47,14 +47,23 @@
   <div class="card no-print">
     <h1>Forderungsschreiben-Generator (Meta)</h1>
     <div class="muted">
-      <span class="pill">Lokal</span>
-      <span class="pill">Keine Speicherung</span>
+      <span class="pill">Lokal im Browser</span>
+      <span class="pill">Keine Server-Speicherung</span>
       <span class="pill">Kein Tracking</span>
     </div>
+
     <p class="muted">
-      Erstellt den Brieftext aus <b>templates/adult.txt</b> und <b>templates/minor.txt</b>.
+      Erstellt eine eigenständig formulierte Textvorlage für ein Forderungsschreiben.
       „E-Mail vorbefüllen“ öffnet nur dein Mailprogramm – du kannst alles vor dem Absenden ändern.
     </p>
+
+    <div class="warn">
+      <b>Rechtlicher Hinweis:</b> Dieses Tool stellt eine automatisierte Textvorlage zur individuellen Verwendung bereit und ersetzt keine Rechtsberatung.
+      Es erfolgt keine Prüfung des Einzelfalls und keine Gewähr für Vollständigkeit, Aktualität oder rechtlichen Erfolg. Die Nutzung erfolgt auf eigene Verantwortung.
+      <br><br>
+      <b>Datenschutz:</b> Die eingegebenen Daten werden nach aktuellem Stand ausschließlich lokal im Browser verarbeitet und nicht an den Betreiber dieses Tools übermittelt.
+      Beim Aufruf der Seite werden technisch notwendige Verbindungen zum Hosting-Anbieter (GitHub Pages) hergestellt.
+    </div>
 
     <div class="hr"></div>
 
@@ -215,7 +224,7 @@
     return out;
   }
 
-  // ✅ NEW: formats "max moritz mustermann" -> "Max Moritz Mustermann", supports "Jean-Paul", "O'Neill"
+  // formats "max moritz mustermann" -> "Max Moritz Mustermann", supports "Jean-Paul", "O'Neill"
   function formatPersonName(raw) {
     const s = (raw || '').trim();
     if (!s) return '';
@@ -371,7 +380,7 @@
     $('out').textContent = text;
 
     const to = buildRecipientEmails();
-    const subject = encodeURIComponent('Speicherung von Daten zu meinen Besuchen auf Drittseiten – Forderung auf Unterlassung und Schadenersatz');
+    const subject = encodeURIComponent('Aufforderung zur Unterlassung und Geltendmachung immateriellen Schadensersatzes (Art. 82 DSGVO)');
     const body = encodeURIComponent(text);
     $('mailtoBtn').href = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
   }
