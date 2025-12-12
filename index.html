@@ -215,18 +215,31 @@
     return out;
   }
 
+  // ✅ NEW: formats "max moritz mustermann" -> "Max Moritz Mustermann", supports "Jean-Paul", "O'Neill"
+  function formatPersonName(raw) {
+    const s = (raw || '').trim();
+    if (!s) return '';
+
+    const words = s.split(/\s+/);
+    const capToken = (token) => {
+      return token.split('-').map(part =>
+        part.split("'").map(p =>
+          p ? (p[0].toUpperCase() + p.slice(1).toLowerCase()) : ''
+        ).join("'")
+      ).join('-');
+    };
+    return words.map(capToken).join(' ');
+  }
+
   function updateVisibility() {
-    // service blocks
     $('instaBlock').classList.toggle('hidden', !$('useInsta').checked);
     $('fbBlock').classList.toggle('hidden', !$('useFb').checked);
 
-    // minor-at-signup only if adult
     const adult = $('ageStatus').value === 'adult';
     $('minorAtSignupBlock').classList.toggle('hidden', !adult);
     $('minorAtSignupHint').classList.toggle('hidden', !adult);
     if (!adult) $('wasMinorAtSignup').checked = false;
 
-    // minor signature block only if minor
     const isMinor = $('ageStatus').value === 'minor';
     $('minorSignBlock').classList.toggle('hidden', !isMinor);
   }
@@ -235,13 +248,13 @@
     const emails = [];
     if ($('useFb').checked) emails.push('impressum-support@support.facebook.com');
     if ($('useInsta').checked) emails.push('impressum@support.instagram.com');
-    if (emails.length === 0) emails.push('impressum@support.instagram.com'); // fallback
+    if (emails.length === 0) emails.push('impressum@support.instagram.com');
     return emails.join(', ');
   }
 
   function buildSenderBlock() {
     const lines = [];
-    lines.push($('name').value.trim() || '[Name]');
+    lines.push(formatPersonName($('name').value) || '[Name]');
     lines.push($('street').value.trim() || '[Straße Hausnr]');
     lines.push($('city').value.trim() || '[PLZ Ort]');
     lines.push($('email').value.trim() || '[E-Mail]');
@@ -273,7 +286,6 @@
     return `Ich nutze Ihre Dienste Facebook und/oder Instagram.`;
   }
 
-  // ✅ NEW: if IBAN empty -> keep original placeholders in letter (user can fill later)
   function buildPaymentLine() {
     const iban = $('iban').value.trim();
     const bic = $('bic').value.trim();
@@ -306,7 +318,6 @@
     const sendDate = getSendDate();
     const deadline = addDays(sendDate, $('days').value || 21);
 
-    // default sign date for minors (if empty)
     if (isMinor && $('signDate') && !$('signDate').value) {
       $('signDate').value = $('sendDate').value;
     }
@@ -319,8 +330,11 @@
     const signDate = signDateVal ? new Date(signDateVal) : sendDate;
     const placeOut = place || '[Ort]';
 
+    const sigLine = '____________________________________________';
+
     const map = {
       '{{SENDER_BLOCK}}': buildSenderBlock(),
+      '{{SIGNATURE_NAME}}': formatPersonName($('name').value) || '[Name]',
       '{{EMAILS}}': buildRecipientEmails(),
       '{{DATE}}': fmtDateDE(sendDate),
       '{{SERVICES_SENTENCE}}': buildServicesSentence(),
@@ -332,9 +346,8 @@
           ? 'Ich war bei der Anmeldung noch nicht volljährig.'
           : '',
 
-      // minor-only placeholders (used in templates/minor.txt)
       '{{SIGNATURE_CHILD_LINE}}': isMinor
-        ? `${placeOut}, ${fmtDateDE(signDate)}\n[Ihre Unterschrift]`
+        ? `${placeOut}, ${fmtDateDE(signDate)}\nUnterschrift: ${sigLine}`
         : '',
       '{{PARENTS_CONSENT_LINE}}': isMinor
         ? (p1 || p2
@@ -413,16 +426,19 @@
     doc.save(fname);
   }
 
-  // events
   document.addEventListener('input', refresh);
   $('copyBtn').addEventListener('click', copyText);
   $('pdfBtn').addEventListener('click', downloadPdfWithoutUrl);
 
-  // init sendDate = today
+  // Auto-format name on blur
+  $('name').addEventListener('blur', () => {
+    $('name').value = formatPersonName($('name').value);
+    refresh();
+  });
+
   const now = new Date();
   $('sendDate').value = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
 
-  // load templates then render
   loadTemplates()
     .then(refresh)
     .catch(() => $('out').textContent = 'Fehler beim Laden der Vorlagen. Prüfe templates/adult.txt und templates/minor.txt.');
