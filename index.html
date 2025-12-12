@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <title>Meta-Brief-Generator – lokal</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; line-height: 1.35; color:#111; }
+    .wrap { max-width: 1200px; margin: 0 auto; display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 980px) { .wrap { grid-template-columns: 520px 1fr; } }
+    .card { border: 1px solid #ddd; border-radius: 14px; padding: 16px; background: #fff; }
+    h1 { font-size: 20px; margin: 0 0 10px; }
+    h2 { font-size: 16px; margin: 14px 0 8px; }
+    label { display:block; font-weight:650; margin: 10px 0 6px; }
+    input, select { width: 100%; padding: 10px; border:1px solid #ccc; border-radius: 12px; font-size: 14px; background:#fff; }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .inline { display:flex; gap:12px; align-items:center; margin-top:6px; flex-wrap: wrap; }
+    .inline label { margin: 0; font-weight: 650; }
+    .inline input[type="checkbox"] { width:auto; }
+    .btns { display:flex; flex-wrap: wrap; gap:10px; margin-top: 14px; }
+    button, a.btn {
+      background:#111; color:#fff; border:1px solid #111; padding: 10px 14px; border-radius: 12px;
+      font-weight: 800; cursor:pointer; text-decoration:none; font-size: 14px;
+    }
+    button.secondary, a.secondary { background:#fff; color:#111; }
+    .muted { font-size: 12px; color:#444; }
+    .hr { height:1px; background:#eee; margin: 14px 0; }
+    pre { white-space: pre-wrap; word-break: break-word; background:#fafafa; border:1px solid #eee; border-radius: 12px; padding: 14px; font-size: 13px; }
+    .pill { display:inline-block; padding: 3px 10px; border:1px solid #ddd; border-radius: 999px; font-size: 12px; margin-right: 6px; }
+    .warn { background:#fff7ed; border:1px solid #fed7aa; padding: 10px; border-radius: 12px; font-size: 12px; }
+    .hidden { display:none !important; }
+
+    @media print {
+      .no-print { display:none !important; }
+      .card { border:none; padding:0; }
+      body { margin: 0; }
+      pre { border:none; background:#fff; padding:0; font-size: 12pt; }
+      .wrap { display:block; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- LEFT -->
+  <div class="card no-print">
+    <h1>Forderungsschreiben-Generator (Meta)</h1>
+    <div class="muted">
+      <span class="pill">Lokal</span>
+      <span class="pill">Keine Speicherung</span>
+      <span class="pill">Kein Tracking</span>
+    </div>
+    <p class="muted">
+      Erstellt den Brieftext aus <b>templates/adult.txt</b> und <b>templates/minor.txt</b>.
+      „E-Mail vorbefüllen“ öffnet nur dein Mailprogramm – du kannst alles vor dem Absenden ändern.
+    </p>
+
+    <div class="hr"></div>
+
+    <h2>1) Auswahl</h2>
+
+    <label>Dienste</label>
+    <div class="inline">
+      <label><input type="checkbox" id="useInsta" checked> Instagram</label>
+      <label><input type="checkbox" id="useFb"> Facebook</label>
+    </div>
+    <p class="muted">Empfänger-E-Mails werden automatisch gesetzt.</p>
+
+    <label>Wie alt bist du aktuell?</label>
+    <select id="ageStatus">
+      <option value="adult">18 oder älter</option>
+      <option value="minor">Unter 18</option>
+    </select>
+
+    <div id="minorAtSignupBlock" class="inline">
+      <label><input type="checkbox" id="wasMinorAtSignup"> Bei Anmeldung minderjährig</label>
+    </div>
+    <p class="muted" id="minorAtSignupHint">Nur relevant, wenn du aktuell 18+ bist.</p>
+
+    <div class="hr"></div>
+
+    <h2>2) Deine Daten</h2>
+
+    <label>Name</label>
+    <input id="name" placeholder="Max Mustermann" />
+
+    <label>Straße & Hausnummer</label>
+    <input id="street" placeholder="Musterstraße 1" />
+
+    <label>PLZ & Ort</label>
+    <input id="city" placeholder="12345 Musterstadt" />
+
+    <label>E-Mail</label>
+    <input id="email" placeholder="max@example.com" />
+
+    <div id="instaBlock">
+      <label>Instagram-Username</label>
+      <input id="instaUser" placeholder="deinusername" />
+      <label>Instagram genutzt seit</label>
+      <input id="sinceInsta" value="April 2019" placeholder="Monat/Jahr" />
+    </div>
+
+    <div id="fbBlock" class="hidden">
+      <label>Facebook-Profil-URL</label>
+      <input id="fbUrl" placeholder="https://www.facebook.com/vorname.nachname..." />
+      <label>Facebook genutzt seit</label>
+      <input id="sinceFb" placeholder="z. B. 2020 oder ungefähr 3 Jahre" />
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Versanddatum</label>
+        <input id="sendDate" type="date" />
+        <div class="muted">Wenn leer: heute</div>
+      </div>
+      <div>
+        <label>Frist (Tage)</label>
+        <input id="days" type="number" value="21" min="21" />
+        <div class="muted">Empfehlung: mindestens 21 Tage</div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <h2>3) Zahlung (optional)</h2>
+
+    <label>IBAN (optional)</label>
+    <input id="iban" placeholder="DE… (kann auch leer bleiben)" />
+    <p class="muted">Wenn leer: im Brief bleibt „IBAN: [bitte angeben]“ stehen, du kannst es später selbst ergänzen.</p>
+
+    <label>BIC (optional)</label>
+    <input id="bic" placeholder="z. B. GENODEF1XXX (kann auch leer bleiben)" />
+
+    <div class="warn">
+      Tipp: Wenn du IBAN/BIC nicht hier eingeben willst, lass es leer und trage es später direkt im Mailprogramm oder PDF ein.
+    </div>
+
+    <!-- MINOR SIGNATURE BLOCK -->
+    <div id="minorSignBlock" class="hidden">
+      <div class="hr"></div>
+      <h2>4) Unterschriften (nur unter 18)</h2>
+
+      <label>Ort (Unterschrift)</label>
+      <input id="placeSign" placeholder="z. B. Berlin" />
+
+      <label>Datum (Unterschrift)</label>
+      <input id="signDate" type="date" />
+
+      <div class="row">
+        <div>
+          <label>Name Erziehungsberechtigte/r 1</label>
+          <input id="parent1" placeholder="Name" />
+        </div>
+        <div>
+          <label>Name Erziehungsberechtigte/r 2 (optional)</label>
+          <input id="parent2" placeholder="Name" />
+        </div>
+      </div>
+
+      <p class="muted">Im PDF können die Unterschriften handschriftlich erfolgen.</p>
+    </div>
+
+    <div class="btns">
+      <button id="copyBtn">Text kopieren</button>
+      <button class="secondary" id="pdfBtn">PDF</button>
+      <a class="btn secondary" id="mailtoBtn" href="#">E-Mail vorbefüllen</a>
+    </div>
+
+    <p class="muted">
+      <b>PDF:</b> Erzeugt ein sauberes PDF direkt aus dem Text.
+    </p>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="card">
+    <h2>Vorschau</h2>
+    <pre id="out">Lade Vorlagen…</pre>
+  </div>
+
+</div>
+
+<!-- IMPORTANT: Put jsPDF file into your repo: /libs/jspdf.umd.min.js -->
+<script src="libs/jspdf.umd.min.js"></script>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+
+  let TEMPLATE_ADULT = '';
+  let TEMPLATE_MINOR = '';
+
+  function fmtDateDE(d) {
+    const dd = String(d.getDate()).padStart(2,'0');
+    const mm = String(d.getMonth()+1).padStart(2,'0');
+    const yy = d.getFullYear();
+    return `${dd}.${mm}.${yy}`;
+  }
+
+  function getSendDate() {
+    const v = $('sendDate').value;
+    if (!v) return new Date();
+    const [y,m,d] = v.split('-').map(Number);
+    return new Date(y, m-1, d);
+  }
+
+  function addDays(date, days) {
+    const d = new Date(date);
+    d.setDate(d.getDate() + Number(days));
+    return d;
+  }
+
+  function replaceAll(template, map) {
+    let out = template;
+    for (const [k,v] of Object.entries(map)) out = out.split(k).join(v);
+    return out;
+  }
+
+  function updateVisibility() {
+    // service blocks
+    $('instaBlock').classList.toggle('hidden', !$('useInsta').checked);
+    $('fbBlock').classList.toggle('hidden', !$('useFb').checked);
+
+    // minor-at-signup only if adult
+    const adult = $('ageStatus').value === 'adult';
+    $('minorAtSignupBlock').classList.toggle('hidden', !adult);
+    $('minorAtSignupHint').classList.toggle('hidden', !adult);
+    if (!adult) $('wasMinorAtSignup').checked = false;
+
+    // minor signature block only if minor
+    const isMinor = $('ageStatus').value === 'minor';
+    $('minorSignBlock').classList.toggle('hidden', !isMinor);
+  }
+
+  function buildRecipientEmails() {
+    const emails = [];
+    if ($('useFb').checked) emails.push('impressum-support@support.facebook.com');
+    if ($('useInsta').checked) emails.push('impressum@support.instagram.com');
+    if (emails.length === 0) emails.push('impressum@support.instagram.com'); // fallback
+    return emails.join(', ');
+  }
+
+  function buildSenderBlock() {
+    const lines = [];
+    lines.push($('name').value.trim() || '[Name]');
+    lines.push($('street').value.trim() || '[Straße Hausnr]');
+    lines.push($('city').value.trim() || '[PLZ Ort]');
+    lines.push($('email').value.trim() || '[E-Mail]');
+
+    const profiles = [];
+    if ($('useFb').checked) {
+      const fb = $('fbUrl').value.trim() || 'https://www.facebook.com/[dein.profil]';
+      profiles.push(`Facebook-Profil: ${fb}`);
+    }
+    if ($('useInsta').checked) {
+      const iu = $('instaUser').value.trim() || '[Benutzername]';
+      profiles.push(`Instagram-Profil: https://www.instagram.com/${iu}/`);
+    }
+    if (profiles.length) lines.push(profiles.join('\n'));
+
+    return lines.join('\n');
+  }
+
+  function buildServicesSentence() {
+    const useFb = $('useFb').checked;
+    const useInsta = $('useInsta').checked;
+
+    const sinceFb = ($('sinceFb').value || '').trim() || '[Monat/Jahr oder ungefähr NN Jahren]';
+    const sinceInsta = ($('sinceInsta').value || '').trim() || '[Monat/Jahr oder ungefähr NN Jahren]';
+
+    if (useFb && useInsta) return `Ich nutze Ihre Dienste Facebook seit ${sinceFb} und Instagram seit ${sinceInsta}.`;
+    if (useInsta) return `Ich nutze Ihren Dienst Instagram seit ${sinceInsta}.`;
+    if (useFb) return `Ich nutze Ihren Dienst Facebook seit ${sinceFb}.`;
+    return `Ich nutze Ihre Dienste Facebook und/oder Instagram.`;
+  }
+
+  // ✅ NEW: if IBAN empty -> keep original placeholders in letter (user can fill later)
+  function buildPaymentLine() {
+    const iban = $('iban').value.trim();
+    const bic = $('bic').value.trim();
+
+    if (!iban) {
+      return `durch Überweisung auf mein Konto, IBAN: [bitte angeben]${bic ? `, BIC: ${bic}` : `, BIC: [bitte angeben]`}`;
+    }
+
+    const bicPart = bic ? `, BIC: ${bic}` : '';
+    return `durch Überweisung auf mein Konto, IBAN: ${iban}${bicPart}`;
+  }
+
+  async function loadTemplates() {
+    const [adult, minor] = await Promise.all([
+      fetch('templates/adult.txt', { cache: 'no-store' }).then(r => r.text()),
+      fetch('templates/minor.txt', { cache: 'no-store' }).then(r => r.text()),
+    ]);
+    TEMPLATE_ADULT = adult;
+    TEMPLATE_MINOR = minor;
+  }
+
+  function buildLetter() {
+    if (!TEMPLATE_ADULT || !TEMPLATE_MINOR) {
+      return 'Vorlagen fehlen. Bitte templates/adult.txt und templates/minor.txt im Repo anlegen.';
+    }
+
+    const ageStatus = $('ageStatus').value;
+    const isMinor = ageStatus === 'minor';
+
+    const sendDate = getSendDate();
+    const deadline = addDays(sendDate, $('days').value || 21);
+
+    // default sign date for minors (if empty)
+    if (isMinor && $('signDate') && !$('signDate').value) {
+      $('signDate').value = $('sendDate').value;
+    }
+
+    const place = ($('placeSign')?.value || '').trim();
+    const p1 = ($('parent1')?.value || '').trim();
+    const p2 = ($('parent2')?.value || '').trim();
+
+    const signDateVal = $('signDate')?.value;
+    const signDate = signDateVal ? new Date(signDateVal) : sendDate;
+    const placeOut = place || '[Ort]';
+
+    const map = {
+      '{{SENDER_BLOCK}}': buildSenderBlock(),
+      '{{EMAILS}}': buildRecipientEmails(),
+      '{{DATE}}': fmtDateDE(sendDate),
+      '{{SERVICES_SENTENCE}}': buildServicesSentence(),
+      '{{PAYMENT_LINE}}': buildPaymentLine(),
+      '{{DEADLINE}}': fmtDateDE(deadline),
+      '{{COMPENSATION}}': isMinor ? '10.000' : '5.000',
+      '{{MINOR_SENTENCE_OPTIONAL}}':
+        (!isMinor && $('wasMinorAtSignup').checked)
+          ? 'Ich war bei der Anmeldung noch nicht volljährig.'
+          : '',
+
+      // minor-only placeholders (used in templates/minor.txt)
+      '{{SIGNATURE_CHILD_LINE}}': isMinor
+        ? `${placeOut}, ${fmtDateDE(signDate)}\n[Ihre Unterschrift]`
+        : '',
+      '{{PARENTS_CONSENT_LINE}}': isMinor
+        ? (p1 || p2
+            ? `Die Erziehungsberechtigten (${[p1,p2].filter(Boolean).join(' und ')}) sind mit dieser Forderung auf Unterlassung und Schadenersatz einverstanden.`
+            : `Die Erziehungsberechtigten sind mit dieser Forderung auf Unterlassung und Schadenersatz einverstanden.`)
+        : '',
+      '{{PARENTS_SIGNATURE_BLOCK}}': isMinor
+        ? `${p1 || '[Name Erziehungsberechtigte/r]'}: ____________________________   (${placeOut}, ${fmtDateDE(signDate)})` +
+          (p2 ? `\n${p2}: ____________________________   (${placeOut}, ${fmtDateDE(signDate)})` : '')
+        : ''
+    };
+
+    const base = isMinor ? TEMPLATE_MINOR : TEMPLATE_ADULT;
+    return replaceAll(base, map);
+  }
+
+  function refresh() {
+    updateVisibility();
+
+    const text = buildLetter();
+    $('out').textContent = text;
+
+    const to = buildRecipientEmails();
+    const subject = encodeURIComponent('Speicherung von Daten zu meinen Besuchen auf Drittseiten – Forderung auf Unterlassung und Schadenersatz');
+    const body = encodeURIComponent(text);
+    $('mailtoBtn').href = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
+  }
+
+  async function copyText() {
+    try {
+      await navigator.clipboard.writeText($('out').textContent);
+      $('copyBtn').textContent = 'Kopiert';
+      setTimeout(() => $('copyBtn').textContent = 'Text kopieren', 1200);
+    } catch {
+      alert('Kopieren nicht möglich. Bitte Text in der Vorschau markieren und manuell kopieren.');
+    }
+  }
+
+  function downloadPdfWithoutUrl() {
+    const text = $('out').textContent || '';
+    if (!text.trim()) { alert('Kein Text vorhanden.'); return; }
+
+    if (!window.jspdf || !window.jspdf.jsPDF) {
+      alert('jsPDF wurde nicht geladen. Lege die Datei libs/jspdf.umd.min.js ins Repo und referenziere sie in index.html.');
+      return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+    const margin = 15;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const maxWidth = pageWidth - margin * 2;
+
+    doc.setFont('Times', 'Normal');
+    doc.setFontSize(11);
+
+    const lines = doc.splitTextToSize(text, maxWidth);
+    const lineHeight = 5.2;
+
+    let y = margin;
+    for (let i = 0; i < lines.length; i++) {
+      if (y + lineHeight > pageHeight - margin) {
+        doc.addPage();
+        y = margin;
+        doc.setFont('Times', 'Normal');
+        doc.setFontSize(11);
+      }
+      doc.text(lines[i], margin, y);
+      y += lineHeight;
+    }
+
+    const stamp = new Date();
+    const fname = `forderungsschreiben_${stamp.getFullYear()}-${String(stamp.getMonth()+1).padStart(2,'0')}-${String(stamp.getDate()).padStart(2,'0')}.pdf`;
+    doc.save(fname);
+  }
+
+  // events
+  document.addEventListener('input', refresh);
+  $('copyBtn').addEventListener('click', copyText);
+  $('pdfBtn').addEventListener('click', downloadPdfWithoutUrl);
+
+  // init sendDate = today
+  const now = new Date();
+  $('sendDate').value = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+
+  // load templates then render
+  loadTemplates()
+    .then(refresh)
+    .catch(() => $('out').textContent = 'Fehler beim Laden der Vorlagen. Prüfe templates/adult.txt und templates/minor.txt.');
+</script>
+</body>
+</html>
