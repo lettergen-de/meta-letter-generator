@@ -1,0 +1,46 @@
+{{SENDER_BLOCK}}
+
+An
+Meta Platforms Ireland Limited
+Merrion Road
+Dublin 4 D04 X2K5
+Ireland
+E-Mail: {{EMAILS}}
+
+{{DATE}}
+
+Speicherung personenbezogener Daten bei Besuchen von Drittwebseiten –
+Aufforderung zur Unterlassung und Geltendmachung immateriellen Schadensersatzes
+
+Sehr geehrte Damen und Herren,
+
+{{SERVICES_SENTENCE}} Ich war bei der Anmeldung noch nicht volljährig.
+
+Nach meinem Kenntnisstand erfassen und speichern Sie personenbezogene Daten über meine Besuche auf Webseiten und Diensten außerhalb Ihrer eigenen Plattformen. Diese Datenverarbeitung erfolgte ganz oder teilweise während meiner Minderjährigkeit.
+
+Die Verarbeitung personenbezogener Daten von Minderjährigen unterliegt besonderen rechtlichen Anforderungen. Ich halte die Datenerhebung und -speicherung in meinem Fall für rechtswidrig, insbesondere mangels wirksamer Einwilligung und ausreichender Transparenz.
+
+Ich fordere Sie daher auf, die Erhebung und Speicherung von Daten über meine Besuche auf Webseiten und Diensten Dritter unverzüglich zu unterlassen.
+
+Zudem mache ich einen Anspruch auf immateriellen Schadensersatz gemäß Art. 82 DSGVO geltend. Die Verarbeitung meiner personenbezogenen Daten während meiner Minderjährigkeit stellt einen besonders schwerwiegenden Eingriff in mein Recht auf informationelle Selbstbestimmung dar. Ich beziffere den immateriellen Schadensersatz auf
+
+{{COMPENSATION}} Euro.
+
+Ich erwarte Ihre schriftliche Bestätigung der Unterlassung sowie die Zahlung des genannten Betrags {{PAYMENT_LINE}} bis spätestens
+
+{{DEADLINE}}.
+
+Nach fruchtlosem Ablauf dieser Frist geraten Sie in Zahlungsverzug.
+
+Sollte bis zu diesem Datum weder eine Zahlung noch eine verbindliche Unterlassungserklärung eingehen, behalte ich mir vor, meine Ansprüche ohne weitere Ankündigung weiterzuverfolgen. Die dadurch entstehenden Kosten wären von Ihnen zu tragen.
+
+Bitte bestätigen Sie mir den Eingang dieses Schreibens innerhalb einer Woche per E-Mail.
+
+Mit freundlichen Grüßen
+
+{{SIGNATURE_NAME}}
+{{SIGNATURE_CHILD_LINE}}
+
+{{PARENTS_CONSENT_LINE}}
+
+{{PARENTS_SIGNATURE_BLOCK}}
