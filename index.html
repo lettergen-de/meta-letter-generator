@@ -31,6 +31,9 @@
     .warn { background:#fff7ed; border:1px solid #fed7aa; padding: 10px; border-radius: 12px; font-size: 12px; }
     .hidden { display:none !important; }
 
+    /* ✅ Optional empfohlen: Checkliste sticky */
+    .sticky { position: sticky; top: 12px; z-index: 1; }
+
     @media print {
       .no-print { display:none !important; }
       .card { border:none; padding:0; }
@@ -66,17 +69,16 @@
       Beim Aufruf der Seite werden technisch notwendige Verbindungen zum Hosting-Anbieter (GitHub Pages) hergestellt.
     </div>
 
-    <!-- ✅ NEU: Checkliste-Header direkt unter Disclaimer -->
+    <!-- ✅ Checkliste direkt unter Disclaimer -->
     <div class="hr"></div>
 
     <h2>Checkliste</h2>
-    <div class="warn">
+    <div class="warn sticky">
       <b>1)</b> Schreiben erstellen (Vorschau prüfen, Frist setzen)<br>
       <b>2)</b> <span style="font-weight:800">Vorab versenden</span> (relevant für möglichen Zinslauf)<br>
       <b>3)</b> PDF & Versandnachweis sichern, Erinnerung für Tag <span data-days>21</span> setzen<br>
       <b>4)</b> Danach/parallel Sammelklage anmelden (BfJ oder Alternative)
     </div>
-    <!-- /NEU -->
 
     <div class="hr"></div>
 
@@ -189,7 +191,7 @@
       <a class="btn secondary" id="mailtoBtn" href="#">E-Mail vorbefüllen</a>
     </div>
 
-    <!-- ✅ ERSETZT: Lange Boxen unten -> Kurzzeile + Details (toggle) -->
+    <!-- ✅ unten: kurz + Details toggle -->
     <p class="muted" style="margin-top:10px">
       Kurz: <b>Vorab senden</b> (Zinsen), <b>Nachweise sichern</b>, dann/parallel <b>Sammelklage</b>.
       <a href="#" id="toggleSteps" style="margin-left:6px">Details anzeigen</a>
@@ -234,7 +236,6 @@
         </div>
       </div>
     </div>
-    <!-- /ERSETZT -->
 
     <p class="muted" style="margin-top:12px">
       <b>PDF:</b> Erzeugt ein sauberes PDF direkt aus dem Text.
@@ -444,7 +445,7 @@
     const body = encodeURIComponent(text);
     $('mailtoBtn').href = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
 
-    // update "Tag X" dynamically for checklist
+    // update "Tag X" dynamically for checklist + details
     document.querySelectorAll('[data-days]').forEach(el => {
       el.textContent = String($('days').value || 21);
     });
@@ -504,12 +505,13 @@
   $('copyBtn').addEventListener('click', copyText);
   $('pdfBtn').addEventListener('click', downloadPdfWithoutUrl);
 
-  // ✅ NEU: Toggle „Details anzeigen/ausblenden“
+  // ✅ Toggle „Details anzeigen/ausblenden“ (robust + simpel)
   $('toggleSteps')?.addEventListener('click', (e) => {
     e.preventDefault();
     const box = $('stepsDetails');
+    if (!box) return;
     const isHidden = box.classList.contains('hidden');
-    box.classList.toggle('hidden', !isHidden ? true : false);
+    box.classList.toggle('hidden');
     $('toggleSteps').textContent = isHidden ? 'Details ausblenden' : 'Details anzeigen';
   });
 
