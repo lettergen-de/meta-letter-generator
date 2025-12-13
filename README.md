@@ -4,7 +4,6 @@ Statischer Generator für ein Forderungsschreiben (Meta/Instagram) – läuft lo
 ## Datenschutz
 - Keine Speicherung
 - Keine Übermittlung an Server
-- Kein Tracking
 
 ## Nutzung
 1. Seite öffnen
