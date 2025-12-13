@@ -66,6 +66,18 @@
       Beim Aufruf der Seite werden technisch notwendige Verbindungen zum Hosting-Anbieter (GitHub Pages) hergestellt.
     </div>
 
+    <!-- ✅ NEU: Checkliste-Header direkt unter Disclaimer -->
+    <div class="hr"></div>
+
+    <h2>Checkliste</h2>
+    <div class="warn">
+      <b>1)</b> Schreiben erstellen (Vorschau prüfen, Frist setzen)<br>
+      <b>2)</b> <span style="font-weight:800">Vorab versenden</span> (relevant für möglichen Zinslauf)<br>
+      <b>3)</b> PDF & Versandnachweis sichern, Erinnerung für Tag <span data-days>21</span> setzen<br>
+      <b>4)</b> Danach/parallel Sammelklage anmelden (BfJ oder Alternative)
+    </div>
+    <!-- /NEU -->
+
     <div class="hr"></div>
 
     <h2>1) Auswahl</h2>
@@ -177,45 +189,52 @@
       <a class="btn secondary" id="mailtoBtn" href="#">E-Mail vorbefüllen</a>
     </div>
 
-    <!-- ZINSEN + CHECKLISTE + SAMMELKLAGE (FINAL) -->
-    <div class="warn" style="margin-top:10px">
-      <b>Wichtig zum Timing (Zinsen):</b><br>
-      Wenn du einen <b>möglichen</b> Anspruch auf Verzugszinsen wahren möchtest, solltest du dieses Schreiben <b>vorab</b> versenden,
-      eine Frist setzen und den Versand dokumentieren. Die Anmeldung zur Sammelklage ist davon unabhängig und kann parallel oder später erfolgen.
-    </div>
+    <!-- ✅ ERSETZT: Lange Boxen unten -> Kurzzeile + Details (toggle) -->
+    <p class="muted" style="margin-top:10px">
+      Kurz: <b>Vorab senden</b> (Zinsen), <b>Nachweise sichern</b>, dann/parallel <b>Sammelklage</b>.
+      <a href="#" id="toggleSteps" style="margin-left:6px">Details anzeigen</a>
+    </p>
 
-    <div class="warn" style="margin-top:10px">
-      <b>Checkliste (kurz):</b><br>
-      1) PDF speichern · 2) E-Mail senden · 3) Versandnachweis sichern · 4) Erinnerung zum Fristablauf setzen (Tag <span data-days>21</span>).
-    </div>
-
-    <div class="hr"></div>
-
-    <h2>Danach oder parallel: Sammelklage anmelden</h2>
-
-    <div class="warn">
-      <b>Offiziell (direkt):</b> Anmeldung im Verbandsklageregister (BfJ).<br>
-      <div style="margin-top:8px">
-        <a class="btn secondary" target="_blank" rel="noopener"
-           href="https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/VerbandsklageregisterMusterfeststellungsklagenregister/Verbandsklagenregister/Verbandsklagen/Klagen/202505/Anmeldung/Formular_node.html">
-          BfJ-Formular öffnen
-        </a>
+    <div id="stepsDetails" class="hidden">
+      <div class="warn">
+        <b>Hinweis zum Timing (Zinsen):</b><br>
+        Wenn du einen <b>möglichen</b> Anspruch auf Verzugszinsen wahren möchtest, solltest du dieses Schreiben <b>vorab</b> versenden,
+        eine Frist setzen und den Versand dokumentieren. Die Anmeldung zur Sammelklage ist davon unabhängig und kann parallel oder später erfolgen.
       </div>
-      <div class="muted" style="margin-top:8px">
-        Hinweis: Die Sammelklage-Anmeldung ist unabhängig von einem eigenen Schreiben möglich.
-      </div>
-    </div>
 
-    <div class="warn" style="margin-top:10px">
-      <b>Alternative (bequemer):</b> meta-klage.de (Drittanbieter).<br>
-      Nach Angaben des Anbieters und Hinweisen von Stiftung Warentest kann im Erfolgsfall eine Beteiligung von <b>9,5%</b> an einen Prozessfinanzierer anfallen.
-      <div style="margin-top:8px">
-        <a class="btn secondary" target="_blank" rel="noopener" href="https://www.meta-klage.de/">
-          meta-klage.de öffnen
-        </a>
+      <div class="warn" style="margin-top:10px">
+        <b>Nachweise (empfohlen):</b><br>
+        PDF speichern · E-Mail senden · Screenshot/Beleg sichern · Reminder für Tag <span data-days>21</span>.
+      </div>
+
+      <div class="hr"></div>
+
+      <h2>Danach oder parallel: Sammelklage anmelden</h2>
+
+      <div class="warn">
+        <b>Offiziell (direkt):</b> Anmeldung im Verbandsklageregister (BfJ).<br>
+        <div style="margin-top:8px">
+          <a class="btn secondary" target="_blank" rel="noopener"
+             href="https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/VerbandsklageregisterMusterfeststellungsklagenregister/Verbandsklagenregister/Verbandsklagen/Klagen/202505/Anmeldung/Formular_node.html">
+            BfJ-Formular öffnen
+          </a>
+        </div>
+        <div class="muted" style="margin-top:8px">
+          Hinweis: Die Sammelklage-Anmeldung ist unabhängig von einem eigenen Schreiben möglich.
+        </div>
+      </div>
+
+      <div class="warn" style="margin-top:10px">
+        <b>Alternative (bequemer):</b> meta-klage.de (Drittanbieter).<br>
+        Nach Angaben des Anbieters und Hinweisen von Stiftung Warentest kann im Erfolgsfall eine Beteiligung von <b>9,5%</b> an einen Prozessfinanzierer anfallen.
+        <div style="margin-top:8px">
+          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.meta-klage.de/">
+            meta-klage.de öffnen
+          </a>
+        </div>
       </div>
     </div>
-    <!-- /ZINSEN + CHECKLISTE + SAMMELKLAGE (FINAL) -->
+    <!-- /ERSETZT -->
 
     <p class="muted" style="margin-top:12px">
       <b>PDF:</b> Erzeugt ein sauberes PDF direkt aus dem Text.
@@ -484,6 +503,15 @@
   document.addEventListener('input', refresh);
   $('copyBtn').addEventListener('click', copyText);
   $('pdfBtn').addEventListener('click', downloadPdfWithoutUrl);
+
+  // ✅ NEU: Toggle „Details anzeigen/ausblenden“
+  $('toggleSteps')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const box = $('stepsDetails');
+    const isHidden = box.classList.contains('hidden');
+    box.classList.toggle('hidden', !isHidden ? true : false);
+    $('toggleSteps').textContent = isHidden ? 'Details ausblenden' : 'Details anzeigen';
+  });
 
   // Auto-format name on blur
   $('name').addEventListener('blur', () => {
