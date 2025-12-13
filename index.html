@@ -1,104 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forderungsschreiben-Generator | Meta DSGVO Schadensersatz</title>
-  <meta name="description" content="Kostenloser Generator für DSGVO-Forderungsschreiben gegen Meta. Erstellen Sie rechtssichere Schreiben für Instagram & Facebook - lokal, sicher, ohne Tracking.">
-  <meta name="author" content="Meta Letter Generator">
-  <link rel="canonical" href="https://lettergen-de.github.io/meta-letter-generator/">
-  
-  <meta property="og:title" content="Forderungsschreiben-Generator | Meta DSGVO">
-  <meta property="og:description" content="Kostenloser Generator für DSGVO-Forderungsschreiben gegen Meta. Lokal, sicher, ohne Tracking.">
-  <meta property="og:type" content="website">
-  
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Forderungsschreiben-Generator | Meta DSGVO">
-  <meta name="twitter:description" content="Kostenloser Generator für DSGVO-Forderungsschreiben gegen Meta.">
-  
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <title>Meta-Brief-Generator – lokal</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; line-height: 1.35; color:#111; }
+    .wrap { max-width: 1200px; margin: 0 auto; display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 980px) { .wrap { grid-template-columns: 520px 1fr; } }
+    .card { border: 1px solid #ddd; border-radius: 14px; padding: 16px; background: #fff; }
+    h1 { font-size: 20px; margin: 0 0 10px; }
+    h2 { font-size: 16px; margin: 14px 0 8px; }
+    label { display:block; font-weight:650; margin: 10px 0 6px; }
+    input, select { width: 100%; padding: 10px; border:1px solid #ccc; border-radius: 12px; font-size: 14px; background:#fff; }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .inline { display:flex; gap:12px; align-items:center; margin-top:6px; flex-wrap: wrap; }
+    .inline label { margin: 0; font-weight: 650; }
+    .inline input[type="checkbox"] { width:auto; }
+    .btns { display:flex; flex-wrap: wrap; gap:10px; margin-top: 14px; }
+    button, a.btn {
+      background:#111; color:#fff; border:1px solid #111; padding: 10px 14px; border-radius: 12px;
+      font-weight: 800; cursor:pointer; text-decoration:none; font-size: 14px;
+    }
+    button.secondary, a.secondary { background:#fff; color:#111; }
+    .muted { font-size: 12px; color:#444; }
+    .hr { height:1px; background:#eee; margin: 14px 0; }
+    pre { white-space: pre-wrap; word-break: break-word; background:#fafafa; border:1px solid #eee; border-radius: 12px; padding: 14px; font-size: 13px; }
+    .pill { display:inline-block; padding: 3px 10px; border:1px solid #ddd; border-radius: 999px; font-size: 12px; margin-right: 6px; }
+    .warn { background:#fff7ed; border:1px solid #fed7aa; padding: 10px; border-radius: 12px; font-size: 12px; }
+    .hidden { display:none !important; }
+
+    /* ✅ Optional empfohlen: Checkliste sticky */
+    .sticky { position: sticky; top: 12px; z-index: 1; }
+
+    @media print {
+      .no-print { display:none !important; }
+      .card { border:none; padding:0; }
+      body { margin: 0; }
+      pre { border:none; background:#fff; padding:0; font-size: 12pt; }
+      .wrap { display:block; }
+    }
+  </style>
 </head>
 <body>
-
-  <!-- ===== HERO SECTION ===== -->
-  <header class="hero" id="top">
-    <div class="container">
-      <h1 class="hero-title">DSGVO-Forderungsschreiben<br>gegen Meta erstellen</h1>
-      <p class="hero-subtitle">
-        Erstellen Sie ein rechtlich fundiertes Schreiben zur Geltendmachung Ihres Schadensersatzanspruchs – lokal in Ihrem Browser, ohne Datenspeicherung.
-      </p>
-      <a href="#generator" class="hero-cta">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-        Zum Generator
-      </a>
-      
-      <div class="trust-badges">
-        <span class="trust-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          Lokal im Browser
-        </span>
-        <span class="trust-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          Keine Speicherung
-        </span>
-        <span class="trust-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle><line x1="1" y1="1" x2="23" y2="23"></line></svg>
-          Kein Tracking
-        </span>
-      </div>
-    </div>
-  </header>
-
-  <!-- ===== HOW IT WORKS ===== -->
-  <section class="how-it-works" id="ablauf">
-    <div class="container">
-      <h2 class="section-title">So funktioniert's</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <span class="step-number">1</span>
-          <h3 class="step-title">Schreiben erstellen</h3>
-          <p class="step-desc">Formular ausfüllen, Text prüfen, Frist setzen</p>
-        </div>
-        <div class="step-card">
-          <span class="step-number">2</span>
-          <h3 class="step-title">Vorab versenden</h3>
-          <p class="step-desc">Kann für Verzugszinsen relevant sein</p>
-        </div>
-        <div class="step-card">
-          <span class="step-number">3</span>
-          <h3 class="step-title">Nachweise sichern</h3>
-          <p class="step-desc">PDF speichern, Versandnachweis aufbewahren, Reminder für Tag <span data-days>21</span> setzen</p>
-        </div>
-        <div class="step-card">
-          <span class="step-number">4</span>
-          <h3 class="step-title">Sammelklage anmelden</h3>
-          <p class="step-desc">Danach oder parallel beim BfJ oder Drittanbieter</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== GENERATOR SECTION ===== -->
-  <section class="generator-section" id="generator">
-  <div class="container">
-    <div class="gen-wrap">
+<div class="wrap">
 
   <!-- LEFT -->
-  <div class="gen-card no-print">
+  <div class="card no-print">
     <h1>Forderungsschreiben-Generator (Meta)</h1>
 
-    <div class="gen-muted">
-      <span class="gen-pill">Lokal im Browser</span>
-      <span class="gen-pill">Keine Server-Speicherung</span>
-      <span class="gen-pill">Kein Tracking</span>
+    <div class="muted">
+      <span class="pill">Lokal im Browser</span>
+      <span class="pill">Keine Server-Speicherung</span>
+      <span class="pill">Kein Tracking</span>
     </div>
 
-    <p class="gen-muted">
+    <p class="muted">
       Erstellt eine eigenständig formulierte Textvorlage für ein Forderungsschreiben.
       „E-Mail vorbefüllen“ öffnet nur dein Mailprogramm – du kannst alles vor dem Absenden ändern.
     </p>
 
-    <div class="gen-warn">
+    <div class="warn">
       <b>Rechtlicher Hinweis:</b> Dieses Tool stellt eine automatisierte Textvorlage zur individuellen Verwendung bereit und ersetzt keine Rechtsberatung.
       Es erfolgt keine Prüfung des Einzelfalls und keine Gewähr für Vollständigkeit, Aktualität oder rechtlichen Erfolg. Die Nutzung erfolgt auf eigene Verantwortung.
       <br><br>
@@ -106,14 +69,27 @@
       Beim Aufruf der Seite werden technisch notwendige Verbindungen zum Hosting-Anbieter (GitHub Pages) hergestellt.
     </div>
 
+    <!-- ✅ Checkliste direkt unter Disclaimer -->
+    <div class="hr"></div>
+
+    <h2>Checkliste</h2>
+    <div class="warn sticky">
+      <b>1)</b> Schreiben erstellen (Vorschau prüfen, Frist setzen)<br>
+      <b>2)</b> <span style="font-weight:800">Vorab versenden</span> (relevant für möglichen Zinslauf)<br>
+      <b>3)</b> PDF & Versandnachweis sichern, Erinnerung für Tag <span data-days>21</span> setzen<br>
+      <b>4)</b> Danach/parallel Sammelklage anmelden (BfJ oder Alternative)
+    </div>
+
+    <div class="hr"></div>
+
     <h2>1) Auswahl</h2>
 
     <label>Dienste</label>
-    <div class="gen-inline">
+    <div class="inline">
       <label><input type="checkbox" id="useInsta" checked> Instagram</label>
       <label><input type="checkbox" id="useFb"> Facebook</label>
     </div>
-    <p class="gen-muted">Empfänger-E-Mails werden automatisch gesetzt.</p>
+    <p class="muted">Empfänger-E-Mails werden automatisch gesetzt.</p>
 
     <label>Wie alt bist du aktuell?</label>
     <select id="ageStatus">
@@ -121,12 +97,12 @@
       <option value="minor">Unter 18</option>
     </select>
 
-    <div id="minorAtSignupBlock" class="gen-inline">
+    <div id="minorAtSignupBlock" class="inline">
       <label><input type="checkbox" id="wasMinorAtSignup"> Bei Anmeldung minderjährig</label>
     </div>
-    <p class="gen-muted" id="minorAtSignupHint">Nur relevant, wenn du aktuell 18+ bist.</p>
+    <p class="muted" id="minorAtSignupHint">Nur relevant, wenn du aktuell 18+ bist.</p>
 
-    <div class="gen-hr"></div>
+    <div class="hr"></div>
 
     <h2>2) Deine Daten</h2>
 
@@ -156,37 +132,37 @@
       <input id="sinceFb" placeholder="z. B. 2020 oder ungefähr 3 Jahre" />
     </div>
 
-    <div class="gen-row">
+    <div class="row">
       <div>
         <label>Versanddatum</label>
         <input id="sendDate" type="date" />
-        <div class="gen-muted">Wenn leer: heute</div>
+        <div class="muted">Wenn leer: heute</div>
       </div>
       <div>
         <label>Frist (Tage)</label>
         <input id="days" type="number" value="21" min="21" />
-        <div class="gen-muted">Empfehlung: mindestens 21 Tage</div>
+        <div class="muted">Empfehlung: mindestens 21 Tage</div>
       </div>
     </div>
 
-    <div class="gen-hr"></div>
+    <div class="hr"></div>
 
     <h2>3) Zahlung (optional)</h2>
 
     <label>IBAN (optional)</label>
     <input id="iban" placeholder="DE… (kann auch leer bleiben)" />
-    <p class="gen-muted">Wenn leer: im Brief bleibt „IBAN: [bitte angeben]“ stehen, du kannst es später selbst ergänzen.</p>
+    <p class="muted">Wenn leer: im Brief bleibt „IBAN: [bitte angeben]“ stehen, du kannst es später selbst ergänzen.</p>
 
     <label>BIC (optional)</label>
     <input id="bic" placeholder="z. B. GENODEF1XXX (kann auch leer bleiben)" />
 
-    <div class="gen-warn">
+    <div class="warn">
       Tipp: Wenn du IBAN/BIC nicht hier eingeben willst, lass es leer und trage es später direkt im Mailprogramm oder PDF ein.
     </div>
 
     <!-- MINOR SIGNATURE BLOCK -->
     <div id="minorSignBlock" class="hidden">
-      <div class="gen-hr"></div>
+      <div class="hr"></div>
       <h2>4) Unterschriften (nur unter 18)</h2>
 
       <label>Ort (Unterschrift)</label>
@@ -195,7 +171,7 @@
       <label>Datum (Unterschrift)</label>
       <input id="signDate" type="date" />
 
-      <div class="gen-row">
+      <div class="row">
         <div>
           <label>Name Erziehungsberechtigte/r 1</label>
           <input id="parent1" placeholder="Name" />
@@ -206,131 +182,73 @@
         </div>
       </div>
 
-      <p class="gen-muted">Im PDF können die Unterschriften handschriftlich erfolgen.</p>
+      <p class="muted">Im PDF können die Unterschriften handschriftlich erfolgen.</p>
     </div>
 
-    <div class="gen-btns">
+    <div class="btns">
       <button id="copyBtn">Text kopieren</button>
       <button class="secondary" id="pdfBtn">PDF</button>
       <a class="btn secondary" id="mailtoBtn" href="#">E-Mail vorbefüllen</a>
     </div>
 
     <!-- ✅ unten: kurz + Details toggle -->
+    <p class="muted" style="margin-top:10px">
+      Kurz: <b>Vorab senden</b> (Zinsen), <b>Nachweise sichern</b>, dann/parallel <b>Sammelklage</b>.
+      <a href="#" id="toggleSteps" style="margin-left:6px">Details anzeigen</a>
+    </p>
 
-    <p class="gen-muted" style="margin-top:12px"><b>PDF:</b> Erzeugt ein sauberes PDF direkt aus dem Text.</p>
-</div>
+    <div id="stepsDetails" class="hidden">
+      <div class="warn">
+        <b>Hinweis zum Timing (Zinsen):</b><br>
+        Wenn du einen <b>möglichen</b> Anspruch auf Verzugszinsen wahren möchtest, solltest du dieses Schreiben <b>vorab</b> versenden,
+        eine Frist setzen und den Versand dokumentieren. Die Anmeldung zur Sammelklage ist davon unabhängig und kann parallel oder später erfolgen.
+      </div>
+
+      <div class="warn" style="margin-top:10px">
+        <b>Nachweise (empfohlen):</b><br>
+        PDF speichern · E-Mail senden · Screenshot/Beleg sichern · Reminder für Tag <span data-days>21</span>.
+      </div>
+
+      <div class="hr"></div>
+
+      <h2>Danach oder parallel: Sammelklage anmelden</h2>
+
+      <div class="warn">
+        <b>Offiziell (direkt):</b> Anmeldung im Verbandsklageregister (BfJ).<br>
+        <div style="margin-top:8px">
+          <a class="btn secondary" target="_blank" rel="noopener"
+             href="https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/VerbandsklageregisterMusterfeststellungsklagenregister/Verbandsklagenregister/Verbandsklagen/Klagen/202505/Anmeldung/Formular_node.html">
+            BfJ-Formular öffnen
+          </a>
+        </div>
+        <div class="muted" style="margin-top:8px">
+          Hinweis: Die Sammelklage-Anmeldung ist unabhängig von einem eigenen Schreiben möglich.
+        </div>
+      </div>
+
+      <div class="warn" style="margin-top:10px">
+        <b>Alternative (bequemer):</b> meta-klage.de (Drittanbieter).<br>
+        Nach Angaben des Anbieters und Hinweisen von Stiftung Warentest kann im Erfolgsfall eine Beteiligung von <b>9,5%</b> an einen Prozessfinanzierer anfallen.
+        <div style="margin-top:8px">
+          <a class="btn secondary" target="_blank" rel="noopener" href="https://www.meta-klage.de/">
+            meta-klage.de öffnen
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="muted" style="margin-top:12px">
+      <b>PDF:</b> Erzeugt ein sauberes PDF direkt aus dem Text.
+    </p>
+  </div>
 
   <!-- RIGHT -->
-  <div class="gen-card">
+  <div class="card">
     <h2>Vorschau</h2>
     <pre id="out">Lade Vorlagen…</pre>
   </div>
 
 </div>
-  </div>
-</section>
-
-  <!-- ===== TIMING SECTION ===== -->
-  <section class="timing-section" id="timing">
-    <div class="container">
-      <div class="timing-box">
-        <h3 class="timing-title">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          Hinweis zum Timing (Zinsen)
-        </h3>
-        <p class="timing-text">
-          In manchen Fällen kann ein möglicher Anspruch auf Verzugszinsen davon abhängen, dass ein Anspruch vorab geltend gemacht und eine Frist gesetzt wurde. Viele Betroffene versenden das Schreiben daher vor oder parallel zur Sammelklage.
-        </p>
-        <p class="timing-disclaimer">(Keine Rechtsberatung.)</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SAMMELKLAGE SECTION ===== -->
-  <section class="sammelklage-section" id="sammelklage">
-    <div class="container">
-      <h2 class="sammelklage-title">Danach oder parallel: Sammelklage anmelden</h2>
-      
-      <div class="sammelklage-grid">
-        <!-- Card A: BfJ -->
-        <div class="sammelklage-card">
-          <h3 class="sammelklage-card-title">Verbandsklageregister (Bundesamt für Justiz)</h3>
-          <p class="sammelklage-card-subtitle">Anmeldung im Verbandsklageregister</p>
-          <p class="sammelklage-card-body">
-            Anmeldung im Verbandsklageregister beim Bundesamt für Justiz.
-          </p>
-          <a href="https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/VerbandsklageregisterMusterfeststellungsklagenregister/Verbandsklagenregister/Verbandsklagen/Klagen/202505/Anmeldung/Formular_node.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            Zum Anmeldeformular
-          </a>
-          <p class="sammelklage-note">Die Anmeldung ist unabhängig von einem eigenen Schreiben möglich.</p>
-        </div>
-        
-        <!-- Card B: Third Party -->
-        <div class="sammelklage-card">
-          <h3 class="sammelklage-card-title">Externe Anbieter (Drittanbieter)</h3>
-          <p class="sammelklage-card-subtitle">Sammelklage-Anmeldung über private Anbieter</p>
-          <p class="sammelklage-card-body">
-            Externe Anbieter bündeln teils Anmeldungen.<br>
-            Je nach Modell können im Erfolgsfall Kosten entstehen<br>
-            (z.&nbsp;B. 9,5&nbsp;% Beteiligung).
-          </p>
-          <a href="https://www.meta-klage.de/" target="_blank" rel="noopener noreferrer" class="btn-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            Zur Anbieter-Website
-          </a>
-          <p class="sammelklage-disclaimer">Diese Seite steht in keiner Verbindung zu Drittanbietern.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-badges">
-        <span class="footer-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          Keine Datenspeicherung
-        </span>
-        <span class="footer-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          Lokale Verarbeitung
-        </span>
-        <span class="footer-badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle><line x1="1" y1="1" x2="23" y2="23"></line></svg>
-          Kein Tracking
-        </span>
-      </div>
-      <p class="footer-disclaimer">
-        Dieses Tool stellt keine Rechtsberatung dar und ersetzt keinen Anwalt. Die Nutzung erfolgt auf eigene Verantwortung. Für Richtigkeit und Vollständigkeit wird keine Haftung übernommen.
-      </p>
-      <p class="footer-privacy">
-        Alle Eingaben werden ausschließlich lokal in Ihrem Browser verarbeitet. Es erfolgt keine Übertragung an Server. Diese Seite wird über GitHub Pages gehostet (Standard-Verbindungsdaten).
-      </p>
-    </div>
-  </footer>
-
-  <!-- Accordion Toggle Script (minimal, no external deps) -->
-  <script>
-    function toggleAccordion(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        el.classList.toggle('open');
-      }
-    }
-  </script>
-
-  <!-- 
-    YOUR EXISTING GENERATOR JS GOES HERE
-    Include your existing scripts that handle:
-    - Template loading from /templates/*.txt
-    - Preview updates
-    - PDF generation via /libs/jspdf.umd.min.js
-    - Copy to clipboard
-    - Mailto link generation
-    - Age group toggle for #minorSignBlock
-  -->
 
 <!-- IMPORTANT: Put jsPDF file into your repo: /libs/jspdf.umd.min.js -->
 <script src="libs/jspdf.umd.min.js"></script>
@@ -610,8 +528,5 @@
     .then(refresh)
     .catch(() => $('out').textContent = 'Fehler beim Laden der Vorlagen. Prüfe templates/adult.txt und templates/minor.txt.');
 </script>
-</body>
-</html>
-
 </body>
 </html>
