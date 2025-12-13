@@ -46,6 +46,7 @@
   <!-- LEFT -->
   <div class="card no-print">
     <h1>Forderungsschreiben-Generator (Meta)</h1>
+
     <div class="muted">
       <span class="pill">Lokal im Browser</span>
       <span class="pill">Keine Server-Speicherung</span>
@@ -176,7 +177,47 @@
       <a class="btn secondary" id="mailtoBtn" href="#">E-Mail vorbefüllen</a>
     </div>
 
-    <p class="muted">
+    <!-- ZINSEN + CHECKLISTE + SAMMELKLAGE (FINAL) -->
+    <div class="warn" style="margin-top:10px">
+      <b>Wichtig zum Timing (Zinsen):</b><br>
+      Wenn du einen <b>möglichen</b> Anspruch auf Verzugszinsen wahren möchtest, solltest du dieses Schreiben <b>vorab</b> versenden,
+      eine Frist setzen und den Versand dokumentieren. Die Anmeldung zur Sammelklage ist davon unabhängig und kann parallel oder später erfolgen.
+    </div>
+
+    <div class="warn" style="margin-top:10px">
+      <b>Checkliste (kurz):</b><br>
+      1) PDF speichern · 2) E-Mail senden · 3) Versandnachweis sichern · 4) Erinnerung zum Fristablauf setzen (Tag <span data-days>21</span>).
+    </div>
+
+    <div class="hr"></div>
+
+    <h2>Danach oder parallel: Sammelklage anmelden</h2>
+
+    <div class="warn">
+      <b>Offiziell (direkt):</b> Anmeldung im Verbandsklageregister (BfJ).<br>
+      <div style="margin-top:8px">
+        <a class="btn secondary" target="_blank" rel="noopener"
+           href="https://www.bundesjustizamt.de/DE/Themen/Verbraucherrechte/VerbandsklageregisterMusterfeststellungsklagenregister/Verbandsklagenregister/Verbandsklagen/Klagen/202505/Anmeldung/Formular_node.html">
+          BfJ-Formular öffnen
+        </a>
+      </div>
+      <div class="muted" style="margin-top:8px">
+        Hinweis: Die Sammelklage-Anmeldung ist unabhängig von einem eigenen Schreiben möglich.
+      </div>
+    </div>
+
+    <div class="warn" style="margin-top:10px">
+      <b>Alternative (bequemer):</b> meta-klage.de (Drittanbieter).<br>
+      Nach Angaben des Anbieters und Hinweisen von Stiftung Warentest kann im Erfolgsfall eine Beteiligung von <b>9,5%</b> an einen Prozessfinanzierer anfallen.
+      <div style="margin-top:8px">
+        <a class="btn secondary" target="_blank" rel="noopener" href="https://www.meta-klage.de/">
+          meta-klage.de öffnen
+        </a>
+      </div>
+    </div>
+    <!-- /ZINSEN + CHECKLISTE + SAMMELKLAGE (FINAL) -->
+
+    <p class="muted" style="margin-top:12px">
       <b>PDF:</b> Erzeugt ein sauberes PDF direkt aus dem Text.
     </p>
   </div>
@@ -383,6 +424,11 @@
     const subject = encodeURIComponent('Aufforderung zur Unterlassung und Geltendmachung immateriellen Schadensersatzes (Art. 82 DSGVO)');
     const body = encodeURIComponent(text);
     $('mailtoBtn').href = `mailto:${encodeURIComponent(to)}?subject=${subject}&body=${body}`;
+
+    // update "Tag X" dynamically for checklist
+    document.querySelectorAll('[data-days]').forEach(el => {
+      el.textContent = String($('days').value || 21);
+    });
   }
 
   async function copyText() {
